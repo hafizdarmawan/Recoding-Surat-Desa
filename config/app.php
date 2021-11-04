@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Akaunting\Setting\Provider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
-
+        browner12\helpers\HelperServiceProvider::class,
         /*
          * Package Service Providers...
          */
