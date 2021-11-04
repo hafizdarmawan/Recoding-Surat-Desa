@@ -164,6 +164,7 @@ return [
         Akaunting\Setting\Provider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -230,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Setting' => Akaunting\Setting\Facade::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
