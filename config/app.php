@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Akaunting\Setting\Provider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -228,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Setting' => Akaunting\Setting\Facade::class,
+        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
 
     ],
 
