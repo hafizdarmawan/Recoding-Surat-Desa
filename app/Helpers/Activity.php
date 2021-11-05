@@ -8,7 +8,7 @@ use App\ActivityLog;
 
 class Activity
 {
-    public static function add(Request $request, $data)
+    public static function add($data)
     {
         $log = new ActivityLog();
 
@@ -22,9 +22,9 @@ class Activity
 
         $log->page          = $data['page'];
         $log->description   = $data['description'];
-        $log->method        = $request->method();
-        $log->ip            = $request->ip();
-        $log->agent         = $request->header('user-agent');
+        $log->method        = Request::method();
+        $log->ip            = Request::ip();
+        $log->agent         = Request::header('user-agent');
         $log->save();
     }
 }

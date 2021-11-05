@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Activity;
 use App\Letter;
 use App\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class SubmissionController extends Controller
 {
@@ -39,6 +41,8 @@ class SubmissionController extends Controller
                 'text'  => 'Ada Pengajuan Surat Baru Oleh:' . auth()->user()->name . ' Dan Surat Yang Diajukan Adalah :' . $letter->name . '. Mohon Segera DiTinjau, Terimakasih. E-Surat Pemerintah Desa Tremas'
             ]);
 
+
+        // helper log
         Activity::add(['page' => 'Pengajuan Surat', 'description' => 'Mengajukan Surat Baru:' . $letter->name]);
 
         return back()->with([
