@@ -13,7 +13,7 @@ class AccountRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class AccountRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'photo' => 'nullable|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            'name'  => 'required|min:5|max:255'
+        ];
+    }
+
+    public function filters()
+    {
+        return  [
+            'name'  => 'trim|escape|capitalize'
         ];
     }
 }
