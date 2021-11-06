@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Makassar',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -239,6 +239,12 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        // Helper
+        'Activity' => App\Helpers\Activity::class,
     ],
+
+    'admin_path' => env('ADMIN_PATH', 'admin'),
+
 
 ];

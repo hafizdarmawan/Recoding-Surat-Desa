@@ -1,73 +1,89 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@section('title', 'Login')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+@section('body')
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+<body>
+    @endsection
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+    @section('content')
+    
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card overflow-hidden">
+                        <div class="bg-primary">
+                            <div class="text-primary text-center p-4">
+                                <h5 class="text-white font-size-20">Selamat Datang di Sistem E-Surat Busungbiu</h5>
+                                <p class="text-white-50">Silahkan login terlebih dahulu.</p>
+                                <a href="#" class="logo logo-admin">
+                                    <img src="{{ asset('assets/images/busungbiu-logo.png') }}" height="50" alt="logo">
+                                </a>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="card-body p-4">
+                            <div class="p-3">
+                                <form class="form-horizontal mt-4" method="POST" action="{{ route('login') }}">
+                                    @csrf
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <div class="form-group">
+                                        <label for="sin">NIK</label>
+                                        <input name="sin" type="text"
+                                            class="form-control @error('sin') is-invalid @enderror"
+                                            value="{{ old('sin') }}" id="sin" placeholder="Masukkan NIK KTP"
+                                            autocomplete="sin" autofocus>
+                                        @error('sin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password"
+                                            class="form-control  @error('password') is-invalid @enderror" id="password"
+                                            placeholder="Masukkan Password">
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="customControlInline">
+                                                <label class="custom-control-label" for="customControlInline">Ingatkan
+                                                    saya</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <button class="btn btn-primary w-md waves-effect waves-light"
+                                                type="submit">Masuk</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    </div>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="mt-5 text-center">
+                        <p class="mb-0">© <script>
+                                document.write(new Date().getFullYear())
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                            </script> {{ config('app.name') }} Pemerintah Desa Busungbiu <i class="mdi mdi-heart text-danger"></i>
+                            PKL UNDIKSHA</p>
+                    </div>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection

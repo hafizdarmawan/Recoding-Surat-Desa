@@ -2,15 +2,20 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Submission;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class SubmissionExport implements FromCollection
+class SubmissionExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        //
+        $submissions = Submission::with('user', 'letter', 'admin')
+        ->where('approval_status', 1)
+        ->get();
+
+        return view('admin.export.letter', [
+            'submissions' => $submissions
+        ]);
     }
 }
