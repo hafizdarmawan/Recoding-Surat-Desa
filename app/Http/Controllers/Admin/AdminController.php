@@ -44,6 +44,13 @@ class AdminController extends Controller
         $data->username = $request->username;
         $data->password = Hash::make($request->password);
         $data->save();
+
+        Activity::add(['page' => 'Admin', 'description' => 'Menambah Data Admin: ' . $request->name]);
+
+        return redirect()->route('admin.data.index')->with([
+            'status' => 'success',
+            'message' => 'Menambahkan Admin Baru: ' . $request->name
+        ]);
     }
 
     public function show(Admin $data)

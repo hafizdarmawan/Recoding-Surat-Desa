@@ -3,9 +3,11 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Waavi\Sanitizer\Laravel\SanitizesInput;
 
 class LetterRequest extends FormRequest
 {
+    use SanitizesInput;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +15,7 @@ class LetterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,15 @@ class LetterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:5|max:255',
+            'status' => 'in:on,off',
+        ];
+    }
+
+    public function filters()
+    {
+        return [
+            'name' => 'trim|escape|capitalize',
         ];
     }
 }

@@ -161,6 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
+
         Akaunting\Setting\Provider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
@@ -233,6 +235,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        
+        
         'Setting' => Akaunting\Setting\Facade::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'Image' => Intervention\Image\Facades\Image::class,

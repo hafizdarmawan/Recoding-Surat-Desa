@@ -25,7 +25,7 @@
 
                 @include('admin.components.message')
 
-                <form class="custom-validation" method="POST" action="{{ route('admin.users.store') }}"
+                <form class="custom-validation" method="POST" action="{{ route('admin.data.store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">

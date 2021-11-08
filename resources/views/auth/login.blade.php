@@ -71,9 +71,7 @@
                                 </form>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="mt-5 text-center">
                         <p class="mb-0">© <script>
                                 document.write(new Date().getFullYear())

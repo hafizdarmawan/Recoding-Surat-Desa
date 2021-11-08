@@ -2,7 +2,8 @@
 
 namespace App\Helpers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use App\ActivityLog;
 
@@ -23,6 +24,7 @@ class Activity
         $log->page          = $data['page'];
         $log->description   = $data['description'];
         $log->method        = Request::method();
+        $log->url           = Request::fullUrl();
         $log->ip            = Request::ip();
         $log->agent         = Request::header('user-agent');
         $log->save();

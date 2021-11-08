@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Activity;
 
 
 class AuthController extends Controller
 {
-    use ThrottlesLogins;
+    // use ThrottlesLogins;
+    use AuthenticatesUsers;
+    
     public function username()
     {
         return 'sin';

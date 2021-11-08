@@ -1,15 +1,10 @@
 <?php
 
-if (!function_exists('DummyFunction')) {
+use App\Submission;
 
-    /**
-     * description
-     *
-     * @param
-     * @return
-     */
-    function DummyFunction()
+if (!function_exists('pendingSubmissions')) {
+    function pendingSubmissions()
     {
-
+        return Submission::where('approval_status', 0)->count();
     }
 }

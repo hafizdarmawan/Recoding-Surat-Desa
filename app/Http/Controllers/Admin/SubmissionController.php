@@ -9,6 +9,7 @@ use App\Submission;
 use App\Signatory;
 use App\Exports\SubmissionExport;
 use App\Helpers\Activity;
+use App\Helpers\Fonnte;
 use Maatwebsite\Excel\Excel;
 
 class SubmissionController extends Controller
@@ -66,13 +67,14 @@ class SubmissionController extends Controller
                 'telah ditolak';
         }
 
-        $response = Http::withHeaders(['Authorization' => config('whatsapp.token')])
-            ->asForm()
-            ->post('https://fonnte.com/api/send_message', [
-                'phone' => $submission->user->phone_number,
-                'type'  => 'text',
-                'text'  => $message
-            ]);
+        // dd($submission->user->phone_number);
+
+        // helper Menggunakan fonte
+        Fonnte::kirim([
+            'phone' => $submission->user->phone_number,
+            'text'  => $message
+        ]);
+        
         Activity::add([
             'page'          => 'Warga',
             'description'   => 'Berhasil Mengubah Status Pengajuan Surat: #' . $id
@@ -94,6 +96,10 @@ class SubmissionController extends Controller
         Activity::add([
             'page'          => 'Warga',
             'description'   => 'Berhasil Memperbarui Pengajuan Surat: #' . $id
+        ]);
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Memperbarui Pengajuan Surat: #' . $id
         ]);
     }
 

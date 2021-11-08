@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+// use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Activity;
 
 class AuthController extends Controller
 {
-    use ThrottlesLogins;
+    use AuthenticatesUsers;
+    // use ThrottlesLogins;
 
     public function username()
     {
@@ -25,44 +27,48 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $this->validator($request);
+
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
             return $this->sendLockoutResponse($request);
         }
 
-        if (Auth::guard('admin')->attempt($request->only($this->username(), 'password'), $request->filled('remember'))) {
+        // dd($request);
+        if (Auth::guard('admin')->attempt($request->only($this->username(), 'password'), true)) {
             Activity::add(['page' => 'Login', 'description' => 'Masuk Ke Website']);
-
             return redirect()->route('admin.home')->with('status', 'You are Logged in as Admin!');
         }
 
         $this->incrementLoginAttempts($request);
+
         return $this->loginFailed();
+
+        dd();
     }
 
     public function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login')->with('status', 'Admin Has Been Logged Out!');
+        return redirect()->route('admin.login')->with('status', 'Admin has been logged out!');
     }
-
-    public function validator(Request $request)
+    private function validator(Request $request)
     {
         $rules = [
             $this->username() => 'required|string|exists:admins|min:4|max:191',
-            'password'        => 'required|string|min:6|max:255'
+            'password'        => 'required|string|min:6|max:255',
         ];
 
-        $message = [
-            $this->username . '.exists' => 'These Credentials Do Not Match Our Record'
+        $messages = [
+            $this->username() . '.exists' => 'These credentials do not match our records.',
         ];
-        $request->validate($rules, $message);
+
+        $request->validate($rules, $messages);
     }
 
     private function loginFailed()
     {
         return redirect()->back()->withInput()->withErrors([
-            'password'  => 'Wrong Password!'
+            'password' => 'Wrong password!',
         ]);
     }
 }

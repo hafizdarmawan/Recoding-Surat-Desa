@@ -27,12 +27,12 @@
                         <span>Data Diri</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="https://aguswahyu.com/panduan-esurat-warga/" target="_blank" class="waves-effect">
                         <i class="mdi mdi-help"></i>
                         <span>Panduan</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="javascript:void(0);"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

@@ -6,13 +6,15 @@ use App\Helpers\Activity;
 use App\Letter;
 use App\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class SubmissionController extends Controller
 {
     public function index()
     {
-        $submissions = Submission::where('user_id', auth()->id());
+        $submissions = Submission::where('user_id', Auth::user()->id)->get();
+        // dd($submissions);
         return view('submissions', compact('submissions'));
     }
 

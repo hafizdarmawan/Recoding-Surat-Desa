@@ -17,6 +17,6 @@ class HomeController extends Controller
         $data['users']      = User::count();
         $data['letters']    = Letter::count();
 
-        return redirect('admin.home', $data);
+        return view('admin.home', $data);
     }
 }
